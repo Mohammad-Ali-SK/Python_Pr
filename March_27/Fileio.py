@@ -31,8 +31,8 @@
 
 # Method two open file-----
 
-with open('text.txt','w') as file:
-    file.write('Helo fr lok')
+# with open('text.txt','w') as file:
+#     file.write('Helo fr lok')
 
 # Project Youtube Manager -------------------------------3.0)
 
@@ -105,3 +105,22 @@ with open('text.txt','w') as file:
             
 # if __name__ == '__main__':
 #     main()
+
+# import os
+# # with open('ytmanager.txt','r') as file:
+# os.remove('text.txt')
+
+
+# with open('address.txt','r') as file:
+#     data = file.read()
+#     new_data = data.replace('babay','no')
+#     print(new_data)
+
+
+# word = "nooojo"
+# with open('address.txt','r') as f:
+#     data = f.read()
+#     if(data.find(word) != -1):
+#         print('Found')
+#     else:
+#         print('Not found')

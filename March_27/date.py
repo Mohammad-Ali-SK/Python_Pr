@@ -27,8 +27,8 @@ t = time.localtime()
 
 # print(formatted_time)
 
-# import datetime
+import datetime
 
-# x  = datetime.datetime.now()
-# year = x.strftime("%B")
-# print(year)
+x  = datetime.datetime.now()
+year = x.strftime("%y")
+print(year)
