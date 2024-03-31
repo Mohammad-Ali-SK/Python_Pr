@@ -61,10 +61,9 @@ def main():
         print('4. Delete user details.')
         print('5. Exit the app.')
         choice = input('Enter your choice..')
-        
         user_name,user_id,user_email = free_api()
-       
-        match choice:
+        
+     match choice:
            case '1':
                list_users()
            case '2':

@@ -1,81 +1,80 @@
-import json
 import requests
+from pymongo import MongoClient
+
 
 def free_api():
     url = "https://api.freeapi.app/api/v1/public/randomusers/user/random"
     response = requests.get(url)
     data = response.json()
     
+    
     if data['success'] and 'data' in data:
         user_data = data['data']
         user_name = user_data['login']['username']
-        # user_id = user_data['id']
+        user_id = user_data['id']
         user_email = user_data['email']
-        
-        return user_name,user_email
-    else:
-        raise Exception('Wrong API details.')
+        return user_id,user_name,user_email
+    raise Exception('Invalid Url')
 
-def load_data():
-    try:
-        with open('user.txt','r') as file:
-            return json.load(file)
-    except:
-        return []
-    
-def save_data(user_details):
-    with open('user.txt','w') as file:
-        json.dump(user_details,file)
-    
-def list_all_user(user_details):
-    print('*' * 70)
+client = MongoClient('mongodb+srv://mohammadpy:mohammadpy@machinelearning.hbo9rte.mongodb.net/')
+db = client['ytmanager']
+colection = db['user_details']
+
+
+def list_all_user():
+    print(f'*' * 70)
     print(f'\n')
-    for index, user in enumerate(user_details, start=1):
-        print(f'{index}. Name _{user['name']} and Email__{user['email']}')
-def add_user(user_details,name,email):
-    user_details.append({'name':name,'email':email})
-    save_data(user_details)
-def update_user_details(user_details,id,name,email):
-    list_all_user(user_details)
-    if 1 <= id <= len(user_details):
-        user_details[id - 1] = {'name':name,'email':email}
-    
-    save_data(user_details)
-    
-def delete_user_details(user_details,id):
-    list_all_user(user_details)
-    if 1<=id <= len(user_details):
-        del user_details[id -1]
-        
-    save_data(user_details)
+    all_data = colection.find()
+    for i in all_data:
+        print(f'Name - {i['name']} Id - {i['_id']} and Email - {i['email']}')
+
+def add_new_user(id,name,email):
+    colection.insert_one({'_id':id,'name':name,'email':email})
+
+def update_user(id,name,email):
+    colection.update_one(
+        {'_id' :id},
+        {"$set" : {'name':name, 'email':email}}
+    )
+
+def delete_user(id):
+    colection.delete_one({'_id' : id})
+
+
 
 def main():
-    user_details = load_data()
-    while True:
-        print(f'\n Random User Details || Chosen Option.')
-        print(f'1. List all user details.')
-        print(f'2. Add a new user.')
-        print('3. Update user_ details.')
-        print('4. Delete user by id__')
+     user_id,user_name,user_email = free_api()
+     
+     while True:
+        
+        print(f'\n Yt user details__ || Chosen Option.')
+        print(f'1. List all User data.')
+        print('2. Add user.')
+        print('3. Update user data.')
+        print('4. Delete user data.')
         print('5. Exit the app.')
-        name,email = free_api()
-        choice = input('Enter your choic___')
+        choice = input('Enter your choice____.')
+        
+        
         if choice == '1':
-            list_all_user(user_details)
-        elif choice == '2':
-            add_user(user_details,name,email)
-        elif choice == '3':
-            name_2 = input('Enter the new name__')
-            email = input('Enter the new email__')
-            user_id = int(input('Enter the id to update__'))
-            update_user_details(user_details,user_id,name_2,email)
-        elif  choice == '4':
-            id = int(input('Enter the user id to delete__'))
-            delete_user_details(user_details,id)
-        elif choice == '5':
+            list_all_user()
+        if choice == '2':
+            add_new_user(user_id,user_name,user_email)
+        if choice == '3':
+            user_id_1 = int(input('Enter user id to update__'))
+            user_name_1 = input('Enter new user name___')
+            user_email_1 = input('Enter new email___')
+            update_user(user_id_1,user_name_1,user_email_1)
+        if choice == '4':
+            user_id = int(input('Enter user id to delete...'))
+            delete_user(user_id)
+        if choice == '5':
             break
         else:
-            print('Enter the right option....!!!')
-            
+            print('Invalid option___')
+
+
 if __name__ == '__main__':
     main()
+            
+            
