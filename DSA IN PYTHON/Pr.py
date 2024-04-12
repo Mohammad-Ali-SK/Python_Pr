@@ -1,118 +1,69 @@
-# # Singly Linked List----------------
+# import requests
+# from pymongo import MongoClient
 
-# class Node:
-#     def __init__(self,data = None, next = None):
-#         self.data = data
-#         self.next = next
-        
-# class SLL:
-#     def __init__(self):
-#         self.head = None
-        
-        
-#     def insert_at_beg(self,data):
-#         node = Node(data,self.head)
-#         self.head = node
-        
-#     def insert_at_end(self,data):
-#         if self.head is None:
-#             self.head = Node(data,None)
-#             return
-#         itr = self.head
-#         while itr.next:
-#             itr = itr.next
-#         itr.next = Node(data,None)
-        
-#     def get_length(self):
-#         count = 0
-#         itr = self.head
-#         while itr:
-#             count += 1
-#             itr = itr.next
-#         return count
+# def freeApi():
+#     url = "https://api.freeapi.app/api/v1/public/randomusers/user/random"
+#     response = requests.get(url)
+#     data = response.json()
     
-#     def remove_at(self,index):
-#         if index < 0 or index > self.get_length():
-#             raise Exception('invalid index...')
-#         if index == 0:
-#             self.head = self.head.next
-#             return
-#         itr = self.head
-#         count = 0
-#         while itr:
-#             if count == index - 1:
-#                 itr.next = itr.next.next
-#                 break
-#             itr = itr.next
-#             count += 1
-            
-            
-#     def insert_at(self,data,index):
-#         if index < 0 or index > self.get_length():
-#             raise  Exception('invalid index...')
-#         if index == 0:
-#             self.insert_at_beg(data)
-#             return
-#         itr = self.head
-#         count = 0
-#         while itr:
-#             if count == index-1:
-#                 node = Node(data,itr.next)
-#                 itr.next = node
-#                 break
-#             itr = itr.next
-#             count += 1
-            
-#     def insert_after_val(self,data,ins_val):
-#         if self.head is None:
-#             return
-#         if self.head.data == data:
-#             self.head.next = Node(ins_val,self.head.next)
-#             return
-#         itr = self.head
-#         while itr:
-#             if itr.data == data:
-#                 itr.next = Node(ins_val,itr.next)
-#                 break
-#             itr = itr.next
+#     if data['success'] and 'data' in data:
+#         user_data = data['data']
+#         usert_name = user_data['login']['username']
+#         user_id = user_data['id']
+#         user_email = user_data['email']
+#         return usert_name,user_id,user_email
+#     else:
+#         raise Exception('Invaid url')
     
-#     def remove_val(self,data):
-#         if self.head is None:
-#             return
-#         if self.head.data == data:
-#             self.head = self.head.next
-#             return
-#         itr = self.head
-#         while itr.next:
-#             if itr.next.data == data:
-#                 itr.next = itr.next.next
-#                 break
-#             itr = itr.next
-            
-            
     
-            
-#     def print(self):
-#         if self.head is None:
-#             print('list is empty.....')
-#             return
-#         itr = self.head
-#         listr = ''
-#         while itr:
-#             listr += str(itr.data) + '-->'
-#             itr = itr.next
-#         print(listr)
+# client = MongoClient('mongodb+srv://mohammadpy:mohammadpy@machinelearning.hbo9rte.mongodb.net/')
+# db = client['ytmanager']
+# collection = db['April 9']
+
+
+# def list_all_user():
+#     all_user = collection.find()
+#     for i in all_user:
+#         print(f'Id : {i['_id']} Name : {i['name']} and Email : {i['email']}')
         
-# if __name__ == '__main__':
-#     li = SLL()
-#     li.insert_at_beg(89)
-#     li.insert_at_beg(88)
-#     li.insert_at_end(90)
-#     li.insert_at_end(91)
-#     li.print()
-#     # li.remove_at(1)
-#     # li.remove_at(0)
-#     # li.insert_at(78,1)
-#     li.insert_after_val(88,900)
-#     li.remove_val(88)
-#     li.print()
+# def add_new_user(user_id,user_name,user_email):
+#     collection.insert_one({'_id':user_id, 'name' : user_name, 'email' : user_email})
+ 
+# def update_user_details(user_id,user_name,user_email):
+#     collection.update_one(
+#         {'_id' : user_id},
+#         {"$set" :{'name' : user_name, 'email' : user_email}}
+#     )
+
+# def delete_user_data(user_id):
+#     collection.delete_one({'_id' : user_id})
+
+
+# while True:
+#     print('\n Youtube manager ||  chosen option.')
+#     print('1. List all user details.')
+#     print('2. Add new user.')
+#     print('3. Update user details.')
+#     print('4. Delete user.')
+#     print('5. Exit the app..')
+#     choice = input('Enter your choice...')
+#     a,b,c = freeApi()
+    
+#     if choice == '1':
+#         list_all_user()
+#     elif choice == '2':
+#         add_new_user(b,a,c)
+#     elif choice == '3':
+#         user_id = int(input('Enter the user id to update.....'))
+#         name = input('Enter a new name..')
+#         email = input('Enter the new email add.....')
+#         update_user_details(user_id,name,email)
+#     elif choice == '4':
+#         user_id_1 = int(input('Enter user id to delete'))
+#         delete_user_data(user_id_1)
+#     elif choice == '5':
+#         break
+#     else:
+#         print('Enter the valid choice....')
+    
+    
