@@ -15,19 +15,7 @@ class CLL:
         else:
             node.next = self.last.next
             self.last.next = node
-        
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
             
     def insert_last(self,data):
         node = Node(data)
@@ -38,25 +26,7 @@ class CLL:
             node.next  = self.last.next
             self.last.next = node
             self.last = node
-    
-  
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-    
+
     def print_all(self):
         if self.last is None:
             return
@@ -66,9 +36,6 @@ class CLL:
             itr = itr.next
         print(itr.data)
     
-
-
-
 
     def search_node(self,data):
         if self.last is None:
@@ -81,11 +48,6 @@ class CLL:
                 return itr
             itr = itr.next
     
-
-    
-    
-    
-    
     
     def insert_after(self,temp,data):
         if temp is not None:
@@ -94,15 +56,7 @@ class CLL:
             if temp == self.last:
                 self.last = node
     
-                
-                
-                
-                
-                
-                
-                
-    
-    
+  
     def delete_frist(self):
         if self.last is not None:
             if self.last.next == self.last:
