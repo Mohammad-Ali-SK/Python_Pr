@@ -269,5 +269,3 @@
 # print(s1.size())
 # print(s1.pop_data())
 # print(s1.peek_data())
-
-
