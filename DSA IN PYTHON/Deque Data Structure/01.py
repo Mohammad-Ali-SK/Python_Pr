@@ -42,96 +42,96 @@
 
 # *****Deque using Doubly Linked list concept******-------------------------------
 
-# class Node:
-#     def __init__(self,data= None, prev = None, next = None):
-#         self.prev = prev
-#         self.data = data
-#         self.next = next
+class Node:
+    def __init__(self,data= None, prev = None, next = None):
+        self.prev = prev
+        self.data = data
+        self.next = next
 
-# class Deque:
-#     def __init__(self):
-#         self.front = None
-#         self.rear = None
-#         self.items_count = 0
+class Deque:
+    def __init__(self):
+        self.front = None
+        self.rear = None
+        self.items_count = 0
         
-#     def is_empty(self):
-#         return self.items_count == 0
+    def is_empty(self):
+        return self.items_count == 0
     
-#     def insert_front(self,data):
-#         node = Node(data,None,self.front)
-#         if self.is_empty():
-#             self.rear = node
-#         else:
-#             self.front.prev = node
-#         self.front = node
-#         self.items_count += 1
+    def insert_front(self,data):
+        node = Node(data,None,self.front)
+        if self.is_empty():
+            self.rear = node
+        else:
+            self.front.prev = node
+        self.front = node
+        self.items_count += 1
     
-#     def insert_rear(self,data):
-#         node = Node(data,self.rear)
-#         if self.is_empty():
-#             self.front = node
-#             # self.rear = node
-#         else:
-#             self.rear.next = node
-#         self.rear = node
-#         self.items_count += 1
+    def insert_rear(self,data):
+        node = Node(data,self.rear)
+        if self.is_empty():
+            self.front = node
+            # self.rear = node
+        else:
+            self.rear.next = node
+        self.rear = node
+        self.items_count += 1
         
-#     def delete_front(self):
-#         if self.is_empty():
-#             return None
-#         if self.front == self.rear:
-#             self.front = None
-#             self.rear = None
-#         else:
-#             self.front = self.front.next
-#             self.front.prev = None
-#         self.items_count -= 1
+    def delete_front(self):
+        if self.is_empty():
+            return None
+        if self.front == self.rear:
+            self.front = None
+            self.rear = None
+        else:
+            self.front = self.front.next
+            self.front.prev = None
+        self.items_count -= 1
             
-#     def delete_rear(self):
-#         if self.is_empty():
-#             raise IndexError('no item is here')
-#         if self.front == self.rear:
-#             self.front = None
-#             self.rear = None
-#         else:
-#             self.rear = self.rear.prev
-#             self.rear.next = None
-#         self.items_count -= 1
+    def delete_rear(self):
+        if self.is_empty():
+            raise IndexError('no item is here')
+        if self.front == self.rear:
+            self.front = None
+            self.rear = None
+        else:
+            self.rear = self.rear.prev
+            self.rear.next = None
+        self.items_count -= 1
             
-#     def get_front(self):
-#         if self.is_empty():
-#             raise IndexError('N I H')
-#         else:
-#             return self.front.data
-#     def get_rear(self):
-#         if self.is_empty():
-#             raise IndexError('N I H')
-#         else:
-#             return self.rear.data
-#     def print(self):
-#         if self.is_empty():
-#             raise IndexError('N I H')
-#         itr = self.front
-#         listr = ' '
-#         while itr:
-#             listr += str(itr.data) + '-->'
-#             itr = itr.next
-#         print(listr)
-#     def size(self):
-#         return self.items_count
+    def get_front(self):
+        if self.is_empty():
+            raise IndexError('N I H')
+        else:
+            return self.front.data
+    def get_rear(self):
+        if self.is_empty():
+            raise IndexError('N I H')
+        else:
+            return self.rear.data
+    def print(self):
+        if self.is_empty():
+            raise IndexError('N I H')
+        itr = self.front
+        listr = ' '
+        while itr:
+            listr += str(itr.data) + '-->'
+            itr = itr.next
+        print(listr)
+    def size(self):
+        return self.items_count
         
     
-# li = Deque()
-# li.insert_front(8)
-# li.insert_front(7)
-# li.insert_front(6)
-# li.insert_rear(9)
-# li.insert_rear(10)
-# print(li.get_front(),li.get_rear())
-# li.delete_front()
-# print(li.get_front(),li.get_rear())
-# print(li.size())
-# li.print()
+li = Deque()
+li.insert_front(8)
+li.insert_front(7)
+li.insert_front(6)
+li.insert_rear(9)
+li.insert_rear(10)
+print(li.get_front(),li.get_rear())
+li.delete_front()
+print(li.get_front(),li.get_rear())
+print(li.size())
+li.print()
 
 class Node:
     def __init__(self,data = None, prev = None, next = None):
@@ -154,28 +154,6 @@ class Dq():
             self.front.prev = node
         self.front = node
         self.item_count += 1
-    
-    #     def insert_front(self,data):
-#         node = Node(data,None,self.front)
-#         if self.is_empty():
-#             self.rear = node
-#         else:
-#             self.front.prev = node
-#         self.front = node
-#         self.items_count += 1
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     
     
     def insert_rear(self,data):
@@ -243,3 +221,5 @@ li.insert_rear(12)
 # li.delete_rear()
 li.print()
 print(li.get_front(),li.get_rear())
+
+
